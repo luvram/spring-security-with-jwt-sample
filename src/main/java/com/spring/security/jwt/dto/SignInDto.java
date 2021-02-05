@@ -1,4 +1,4 @@
-package com.spring.security.jwt;
+package com.spring.security.jwt.dto;
 
 import lombok.Data;
 

@@ -42,15 +42,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .mvcMatchers("/sign-in").permitAll()
                 .mvcMatchers("/sign-up").permitAll()
-                .mvcMatchers("/user").hasAuthority("USER")
-                .mvcMatchers("manager").hasAuthority("MANAGER")
-                .mvcMatchers("/admin").hasAuthority("ADMIN")
+                .mvcMatchers("/user").hasAuthority("ROLE_USER")
+                .mvcMatchers("manager").hasAuthority("ROLE_MANAGER")
+                .mvcMatchers("/admin").hasAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()
 
                 .and().apply(securityConfigurerAdapter());
     }
 
-    @Override @Bean
+    @Override
+    @Bean
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }

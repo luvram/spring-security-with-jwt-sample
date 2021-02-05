@@ -11,17 +11,6 @@ jwt:
 
 spring:
   jpa:
-    properties:
-      hibernate:
-        default_batch_fetch_size: 2
-    database: mysql
-    generate-ddl: false
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
-
-  # Data base properties
-  datasource:
-    url: "jdbc:mysql://127.0.0.1:3306/cloud?useSSL=false&zeroDateTimeBehavior=convertToNull&noAccessToProcedureBodies=true&sessionVariables=wait_timeout=600&serverTimezone=Asia/Seoul"
-    username: "root"
-    password: "1234"

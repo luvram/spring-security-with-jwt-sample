@@ -1,8 +1,12 @@
 package com.spring.security.jwt;
 
 
+import com.spring.security.jwt.dto.JwtTokenDto;
+import com.spring.security.jwt.dto.SignInDto;
+import com.spring.security.jwt.dto.SignUpDto;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,13 +30,13 @@ public class SimpleController {
     }
 
     @PostMapping("/sign-in")
-    public JwtToken signIn(@Valid @RequestBody SignInDto signInDto) {
+    public JwtTokenDto signIn(@Valid @RequestBody SignInDto signInDto) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(signInDto.getUsername(), signInDto.getPassword());
         Authentication authentication = authenticationManager.authenticate(authenticationToken);
 //        CustomUserDetails principal = (CustomUserDetails) authentication.getPrincipal();
 //        SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = tokenProvider.createToken(authentication);
-        return new JwtToken(jwt);
+        return new JwtTokenDto(jwt);
     }
 
     @GetMapping("/user")
